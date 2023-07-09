@@ -454,6 +454,7 @@ def signup_validation():
                         </body>
                         </html>
                         """
+                        session['user_id']=email
                         send_email("pandeyrainy2020@gmail.com", "ohgltbipjxwmvqck", email, "Verification Email", body, "smtp.gmail.com", 465)
                         return render_template('code.html')
             elif password != conpas:
@@ -1282,13 +1283,13 @@ def send_email(from_email, from_pass, to_email, subject, body, hosting, port):
     sender_password = from_pass
     recipient_email = to_email
     subject = subject
-    body = f"""
-    <html>
+    body = f/\"\"\"
+    \<html>
     <body>
         {body}
     </body>
     </html>
-    """
+    \"\"\"
     html_message = MIMEText(body, 'html')
     html_message['Subject'] = subject
     html_message['From'] = sender_email
@@ -1373,11 +1374,11 @@ def publish():
 def publish_inject_load():
     with open("count.txt", "r") as file:
         return {'prog1': file.read()}    
-
+'''
 @app.before_first_request
 def before_first_request():
     threading.Thread(target=update_load).start()
-
+''' 
 def update_load():
     with app.app_context():
         while True:
